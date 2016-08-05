@@ -73,12 +73,11 @@ def index():
         if 'http://' not in url[:7]:
             url = 'http://' + url
         job = q.enqueue_call(
-            import pdb;pdb.set_trace()
             func=_count_and_save_words, args=(url,), result_ttl=5000
         )
         print(job.get_id())
 
-        return render_template('index.html', results=results)
+    return render_template('index.html', results=results)
 
 @app.route("/results/<job_key>", methods=['GET'])
 def get_results(job_key):
