@@ -16,7 +16,6 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
 
 q = Queue(connection=conn)
 

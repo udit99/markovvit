@@ -6,8 +6,9 @@ import operator
 import os
 import re
 import nltk
-from app import db
 from models import *
+
+db = SQLAlchemy(app)
 
 def count_and_save(url):
     errors = []
