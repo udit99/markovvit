@@ -26,6 +26,9 @@ from models import *
 def index():
     results = {}
     if request.method == "POST":
+        # import pdb;pdb.set_trace()
+        app.logger.error('Request body=')
+        app.logger.error(str(request.json))
         # get url that the person has entered
         url = request.form['url']
         if 'http://' not in url[:7]:
