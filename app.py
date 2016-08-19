@@ -4,22 +4,25 @@ import requests
 import operator
 import nltk
 from stop_words import stops
-from flask.ext.sqlalchemy import SQLAlchemy
 from collections import Counter
 from bs4 import BeautifulSoup
 from rq import Queue
 from rq.job import Job
 from worker import conn
-from word_counter import *
+import word_counter 
+from db import db
 
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
+
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db.init_app(app)
+
 
 q = Queue(connection=conn)
 
-from models import *
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -49,5 +52,8 @@ def get_results(job_key):
     else:
         return "Nay!", 202
 
+
 if __name__ == "__main__":
+    app = create_app()
     app.run()
+
