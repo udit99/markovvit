@@ -6,7 +6,7 @@ import operator
 import os
 import re
 import nltk
-from app import db
+from db import db
 from models import *
 
 def count_and_save(url):
